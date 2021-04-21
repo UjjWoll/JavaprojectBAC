@@ -1,0 +1,238 @@
+package Mapase;
+import java.util.*;
+import java.util.InputMismatchException;
+import java.lang.Exception;
+import java.lang.RuntimeException;
+import java.lang.reflect.Field;
+public class Mapase {
+	double n,w,t,b,ber,win,dis;//ber_type;
+	final static double G1=0.68;
+	 final static double G2=0.55;
+	String s1,s2,s4;
+	String gender,ber_type,win_type;//,type1="java.lang.Double";
+	final static String MALE="M";
+	final static String FEMALE="F";
+	int ready=1,wants,svalue;
+	double deny=0.0;
+	boolean s7,s8;
+	Mapase()
+	{
+		System.out.println("To calculate BAC value, you should enter No. of standard drinks you took,your weight in pound,your gender i.e if male enter 'M' and if female enter 'F' and no. of hours since your first drink\n\n");  
+
+	}
+	boolean CheckUserPreferences()
+	{
+		System.out.println("Are you ready to enter the required values if yes enter 1 otherwise operation will terminate.\n");
+		try
+		{	Scanner sc= new Scanner(System.in);
+		wants=sc.nextInt();
+		sc.nextLine();
+		//sc.close();
+		if(wants==ready)
+		{
+			System.out.println("Let's Start\n");
+			return true;
+		}
+		else
+		{
+			//System.out.println("Operation Canceled");
+			return false;
+		}
+	 }
+		catch(InputMismatchException e) 
+		{
+			//System.out.println("Operation terminated");
+			return false;
+		}
+	}
+	boolean TakeUserdata()
+	{  
+		do{
+			System.out.println("Enter ounce of beer you took in numeric format\n");
+			Scanner sc=new Scanner(System.in);
+			try
+			{
+			ber= sc.nextDouble();
+		    ber=ber/12;
+			}
+		catch(InputMismatchException e1)
+		{
+			System.out.println("Please enter in numeric format only\n"+ e1);
+			Scanner sc1=new Scanner(System.in);
+			try{ ber= sc1.nextDouble();
+				ber=ber/12;
+				sc1.nextLine();}
+		    
+			catch(InputMismatchException e2)
+			{
+				return false;
+			}
+		}//sc.next();
+		
+			//ber_type=(((Object)ber).getClass().getName());
+			//System.out.println(ber_type);
+			//System.out.println(typeof(ber));
+		}
+		while(ber==0.0 && ber!=0);
+		//if closed errors occurs sc.close();
+	do{
+			System.out.println("Enter ounce of wine you took in numeric format\n");
+		    Scanner sc2=new Scanner(System.in);
+		try{
+			win= sc2.nextDouble();
+			win=win/5;
+			}
+		catch(InputMismatchException e3)
+			{   System.out.println("Please enter in numeric format only"+" " + e3);
+				Scanner sc3=new Scanner(System.in);
+			try
+			{win= sc3.nextDouble();
+			win=win/5;
+			sc3.nextLine();
+			}
+			catch(InputMismatchException e4)
+			{
+				return false;
+			}
+			}
+		}
+	while(win==0.0 && win!=0);
+	do{
+		System.out.println("Enter ounce of distilled liquor you took in numeric format\n");
+		Scanner sc4=new Scanner(System.in);
+		try{
+			dis= sc4.nextDouble();
+			dis=dis/5;
+			}
+		catch(InputMismatchException e5)
+			{System.out.println("Please enter in numeric format only"+" " + e5);
+			Scanner sc5=new Scanner(System.in);
+			try
+			{win= sc5.nextDouble();
+			win=win/5;
+			sc5.nextLine();
+			}
+			catch(InputMismatchException e6)
+			{
+				return false;
+			}
+			//sc3.next();//sc2.nextLine();
+			}
+	  }
+	while(dis==0.0 && dis!=0);
+		System.out.println("Enter your weight in pound in numeric format\n");
+			do
+			{ Scanner sc6=new Scanner(System.in);
+		try{w=sc6.nextDouble();}
+		//sc3.close();
+		catch(InputMismatchException e4)
+		{
+			System.out.println("Please enter numeric value of weight in pounds only"+ e4);
+			Scanner sc7=new Scanner(System.in);
+			try {
+				w=sc7.nextDouble();
+				sc7.nextLine();
+			}
+			catch(InputMismatchException e7)
+			{return false;}
+		}
+	}
+	while(w==0.0 && w==0);
+	
+		 System.out.println(" Are you a male or a female?\n");
+			
+		 	 // do {
+		 			System.out.println("Please enter 'M' for male and 'F' for female only not other words.");
+		 			  Scanner sc8=new Scanner(System.in);
+			      s1=sc8.next();
+				 s7=(s1.equals(MALE));//returns true if s1=M
+				 s8=(s1.equals(FEMALE));
+				 try{
+					 if{(s7==s8==false)}
+				 	}
+				catch(InputMismatchException e5)
+				{
+					System.out.println("Please enter 'M' for male and 'F' for female only not other words U."+ e5);
+					Scanner sc9=new Scanner(System.in);
+					try {
+					//Scanner sc6=new Scanner(System.in);
+					s1=sc9.next();
+						}
+					catch(InputMismatchException e8)
+							{return false;}
+				}
+				 else
+				 { return true;}
+		 	  //}
+	//while(s7==false && s8==false);
+	//while(s1!=" " );
+		do
+		{ System.out.println("Enter no. of hours since the first drink in numeric format\n");
+		Scanner sc10=new Scanner(System.in);
+		try{t=sc10.nextDouble();}
+		catch(InputMismatchException e6)
+		{
+			System.out.println("Please enter numeric value only"+" "+ e6);
+			Scanner sc11=new Scanner(System.in);
+			try {//Scanner sc8=new Scanner(System.in);
+			t=sc11.nextDouble();
+			sc11.nextLine();
+			}
+			catch(InputMismatchException e8)
+			{ return false;}
+		}
+	}
+	while(t==0.0 && t==0);
+		n=ber+win+dis;
+		System.out.println(n);
+		
+		if(n==0.0)
+			{return false;}
+		else
+			{return true;}
+	}
+	double CalBAC()
+	{	//System.out.println(s1);
+		//System.out.println(MALE);
+		if(s7==true)
+		{
+		b=(-0.015*t)+2.84*n/(w*G1);
+		System.out.println("M:Your BAC value is"+" "+ b);
+		return b;
+		}
+		else if (s8==true)
+		{
+		b=(-0.015*t)+2.84*n/(w*G2);
+		System.out.println("F:Your BAC value is"+" "+ b);
+		return b;
+		}
+		else {
+			System.out.println("Cannot compute BAC");
+			return deny;
+		}
+	}
+	void ShowResult()
+	{ if(b<0.03)
+		   System.out.println("Normal behaviour, no impairment");
+	   else if(0.03<=b&&b<0.06)
+		   System.out.println("Mild Euphoria and impairment");
+	   else if(0.06<=b&&b<0.10)
+		   System.out.println("Euphoric, increaased impairment");
+	   else if(0.10<=b&&b<0.20)
+		   System.out.println("Drunk ,loss of motor control");
+	   else if(0.20<=b&&b<0.30)
+		   System.out.println("Confused, possible blackout");
+	   else if(0.30<=b&&b<0.40)
+		   System.out.println("Possibly unconscious");
+	   else if(b>=0.40)
+		   System.out.println("Unconscious,risk of death");
+	   else
+	   System.out.println(".............");
+	 // Legal limit for driving is BAC of 0.08
+	 
+	 if (b>=0.08)
+		 System.out.println("Over the legal limit for driving");
+		
+		
+	}
+}

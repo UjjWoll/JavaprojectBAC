@@ -1,0 +1,43 @@
+package Mapase;
+import java.util.*;
+public class ImplementCopy extends MapaseCopy{
+	static boolean T1=true;
+	static boolean T2,T3,j,k;
+	static double i=1.0;
+	static int  lastP;
+	public static void main( String args[])
+	{	
+		MapaseCopy mc=new MapaseCopy();
+	     T2=mc.CheckUserPreferences();
+	     if(T2==T1)
+	     { 
+	    	 do{
+	    		T3=mc.TakeUserdata();
+	    		j=mc.CalBAC();
+	    		if(T3==T2==j)
+	    		{
+		    	 if(T3==true)
+		    	 {
+		    	 mc.ShowResult();
+		    	 }
+		    	 }													
+		System.out.println("If you again want to estimate BAC, enter 1 otherwise program will terminates.");
+	     try
+	     {Scanner sc= new Scanner(System.in);
+	     mc.svalue=sc.nextInt();
+	     lastP=mc.svalue;
+	     }
+	     catch(InputMismatchException e)
+	     { System.out.println("Program has been Terminated."); 
+	    // System.out.println(mc.svalue);
+	   //  System.out.println(lastP);
+	     lastP=0;	//to make not to run the while loop in repeated operation and take userdata after termination
+	     }
+	    	 
+	    	 }while(lastP==1);//sentinel value
+	    	 System.gc();
+	    	}
+	    else
+	     {System.out.println("Program is terminated.");}
+}
+}
